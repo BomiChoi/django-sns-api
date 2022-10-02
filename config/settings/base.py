@@ -34,7 +34,10 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-LOCAL_APPS = []
+LOCAL_APPS = [
+    'apps.user.apps.UserConfig',
+    'apps.post.apps.PostConfig',
+]
 
 DJANGO_APPS = [
     'django.contrib.admin',
