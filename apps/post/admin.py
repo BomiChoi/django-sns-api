@@ -1,9 +1,13 @@
 from django.contrib import admin
 
-from .models import Post, Hashtag
+from .models import Post, Hashtag, PostHashtag
 
 
 # Register your models here.
+
+class PostHashtagInline(admin.TabularInline):
+    model = PostHashtag
+
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
@@ -12,10 +16,12 @@ class PostAdmin(admin.ModelAdmin):
         'title',
         'content',
         'user',
+        'like_nums',
+        'hits',
         'created_at',
         'updated_at',
-        'hits'
     )
+    inlines = (PostHashtagInline,)
 
 
 @admin.register(Hashtag)
