@@ -3,6 +3,11 @@ from django.db import models
 
 from apps.common.models import TimeStampedModel
 
+GENDER_CHOICES = (
+    ('남성', '남성'),
+    ('여성', '여성'),
+)
+
 
 class UserManager(BaseUserManager):
     def _create_user(self, email, password, **extra_fields):
@@ -30,7 +35,7 @@ class User(AbstractBaseUser, TimeStampedModel, PermissionsMixin):
 
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=30, null=True, blank=True)
-    gender = models.CharField(max_length=4, null=True, blank=True)
+    gender = models.CharField(choices=GENDER_CHOICES, max_length=4, null=True, blank=True)
     age = models.PositiveIntegerField(null=True, blank=True)
     phone = models.CharField(max_length=13, null=True, blank=True)
     is_superuser = models.BooleanField(default=False)
