@@ -99,6 +99,7 @@ class CustomUserAdmin(UserAdmin):
         'is_superuser',
         'is_active',
         'created_at',
+        'updated_at',
     )
 
     ordering = ('email',)
