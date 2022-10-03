@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+import datetime
 import os
 from pathlib import Path
 
@@ -121,6 +122,26 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL = 'user.User'
+
+# JWT
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": datetime.timedelta(hours=3),
+    "REFRESH_TOKEN_LIFETIME": datetime.timedelta(days=7),
+    "ROTATE_REFRESH_TOKENS": True,
+    'UPDATE_LAST_LOGIN': True,
+}
+
+# DJANGO REST FRAMEWORK
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_PERMISSION_CLASSES": (
+        "rest_framework.permissions.AllowAny",
+    ),
+    "TEST_REQUEST_DEFAULT_FORMAT": "json",
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/

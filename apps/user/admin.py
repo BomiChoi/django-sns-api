@@ -74,6 +74,7 @@ class CustomUserAdmin(UserAdmin):
             'fields': (
                 'is_staff',
                 'is_superuser',
+                'is_active',
             )
         })
     )
